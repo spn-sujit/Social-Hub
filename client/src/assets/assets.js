@@ -363,3 +363,46 @@ export const dummyPendingConnectionsData = [
 dummyUser5Data,
 dummyUser7Data
 ]
+
+export const dummyRecentMessagesData = [
+{
+  _id: "recent1",
+  from_user_id: dummyUser2Data,
+  to_user_id: dummyUserData,
+  text: "Hey how are you?",
+  seen: false,
+  createdAt: "2025-07-25T10:44:12.753Z"
+},
+{
+  _id: "recent2",
+  from_user_id: dummyUser3Data,
+  to_user_id: dummyUserData,
+  text: "Check this image!",
+  seen: true,
+  createdAt: "2025-07-25T10:45:12.753Z"
+},
+{
+  _id: "recent3",
+  from_user_id: dummyUser4Data,
+  to_user_id: dummyUserData,
+  text: "",
+  seen: false,
+  createdAt: "2025-07-25T10:46:12.753Z"
+},
+{
+  _id: "recent4",
+  from_user_id: dummyUser5Data,
+  to_user_id: dummyUserData,
+  text: "Let's meet tomorrow",
+  seen: true,
+  createdAt: "2025-07-25T10:47:12.753Z"
+},
+{
+  _id: "recent5",
+  from_user_id: dummyUser6Data,
+  to_user_id: dummyUserData,
+  text: "New project looks great!",
+  seen: false,
+  createdAt: "2025-07-25T10:48:12.753Z"
+}
+];
