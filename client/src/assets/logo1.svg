@@ -1,0 +1,11 @@
+<svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <line x1="50" y1="50" x2="25" y2="75" stroke="#007BFF" stroke-width="6" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="75" y2="75" stroke="#007BFF" stroke-width="6" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="50" y2="20" stroke="#007BFF" stroke-width="6" stroke-linecap="round"/>
+  
+  <circle cx="25" cy="75" r="10" fill="#007BFF" />
+  <circle cx="75" cy="75" r="10" fill="#007BFF" />
+  <circle cx="50" cy="20" r="10" fill="#007BFF" />
+  
+  <circle cx="50" cy="50" r="14" fill="#0056b3" />
+</svg>
