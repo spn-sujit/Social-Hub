@@ -77,22 +77,22 @@ const StoryViewer = ({ viewStory, setViewStory }) => {
           style={{ width: `${progress}%` }}
         ></div>
       </div>
-      <div className="absolute top-4 left-4 flex items-center gap-3 p-3 px-4 sm:p-4 sm:px-6 backdrop-blur-xl rounded-full bg-black/60 border border-white/20 hover:bg-black/70 transition-colors">
+      <div className="absolute top-3 left-3 flex items-center gap-2 px-2 py-1 backdrop-blur-xl rounded-full bg-black/60 border border-white/20 hover:bg-black/70 transition-colors">
         <img
           src={viewStory.user?.profile_picture}
           alt={viewStory.user?.full_name}
-          className="size-8 sm:size-9 rounded-full object-cover border-2 border-white"
+          className="w-6 h-6 rounded-full object-cover border border-white"
         />
-        <div className="text-white font-semibold flex items-center gap-2 text-sm">
+        <div className="text-white font-medium flex items-center gap-1 text-xs">
           <span className="truncate">{viewStory.user?.full_name}</span>
-          <BadgeCheck size={16} className="text-blue-400 shrink-0" />
+          <BadgeCheck size={12} className="text-blue-400 shrink-0" />
         </div>
       </div>
       <button
         onClick={handleClose}
         className="absolute top-4 right-4 text-white focus:outline-none hover:bg-white/10 p-2 rounded-full transition-all"
       >
-        <X className="w-7 h-7 hover:scale-110 transition-transform cursor-pointer" />
+        <X className="w-6 h-6 hover:scale-110 transition-transform cursor-pointer" />
       </button>
 
       <div className="max-w-[90vw] max-h-[90vh] flex items-center justify-center">
