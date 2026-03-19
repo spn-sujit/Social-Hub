@@ -12,20 +12,20 @@ const RecentMessages = () => {
        fetchRecentMessages();
     },[])
   return (
-    <div className='bg-white rounded-xl shadow-sm border border-gray-100 shrink-0 overflow-hidden'>
-      <div className='p-3 max-h-80 overflow-y-auto no-scrollbar'>
+    <div className='bg-white rounded-2xl shadow-md border border-gray-200 shrink-0 overflow-hidden'>
+      <div className='p-3 max-h-96 overflow-y-auto no-scrollbar space-y-1'>
         {
             messages.map((message,index)=>(
-                <Link to={`/messages/${message.from_user_id._id}`} key={index} className='flex items-start gap-2 py-2 px-2 hover:bg-gray-50 rounded-lg transition-colors'>
-                  <img src={message.from_user_id.profile_picture} alt={message.from_user_id.full_name} className='w-8 h-8 rounded-full object-cover shrink-0'/>
+                <Link to={`/messages/${message.from_user_id._id}`} key={index} className='flex items-center gap-3 py-2.5 px-3 hover:bg-gray-100 rounded-xl transition-all duration-200'>
+                  <img src={message.from_user_id.profile_picture} alt={message.from_user_id.full_name} className='w-10 h-10 rounded-full object-cover shrink-0 border border-gray-200'/>
                   <div className='w-full min-w-0'>
                     <div className='flex justify-between items-center gap-2 mb-1'>
-                      <p className='text-xs font-semibold text-gray-900 truncate'>{message.from_user_id.full_name}</p>
-                      <p className='text-xs text-gray-400 shrink-0'>{moment(message.createdAt).fromNow()}</p>
+                      <p className='text-sm font-medium text-gray-900 truncate'>{message.from_user_id.full_name}</p>
+                      <p className='text-[11px] text-gray-400 shrink-0'>{moment(message.createdAt).fromNow()}</p>
                     </div>
                     <div className='flex justify-between items-center gap-2'>
-                      <p className='text-xs text-gray-600 truncate'>{message.text ? message.text : 'Media'}</p>
-                      {!message.seen && <div className='bg-indigo-500 text-white w-4 h-4 flex items-center justify-center rounded-full text-[10px] font-medium shrink-0'>1</div>}
+                      <p className='text-xs text-gray-500 truncate'>{message.text ? message.text : 'Media'}</p>
+                      {!message.seen && <div className='bg-indigo-500 text-white px-2 py-0.5 flex items-center justify-center rounded-full text-[10px] font-medium shrink-0'>1</div>}
                     </div>
                   </div>
                 </Link>
