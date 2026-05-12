@@ -75,7 +75,7 @@ const sendNewConnectionRequest = inngest.createFunction(
           here
         </a> to accept or reject the request
         </p>
-        <p>Thanks,<br/>PingUp - Stay Connected</p>
+        <p>Thanks,<br/>Social Hub - Stay Connected</p>
         </div>
         `;
       await sendEmail({ to: connection.to_user_id.email, subject, body });
@@ -100,7 +100,7 @@ const sendNewConnectionRequest = inngest.createFunction(
           here
         </a> to accept or reject the request
         </p>
-        <p>Thanks,<br/>PingUp - Stay Connected</p>
+        <p>Thanks,<br/>Social Hub - Stay Connected</p>
         </div>
         `;
       await sendEmail({ to: connection.to_user_id.email, subject, body });

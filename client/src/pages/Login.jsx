@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets } from '../assets/assets';
 import { SignIn } from '@clerk/react';
-
+import api from '../Api/axios';
+import toast from 'react-hot-toast'
 const StatPill = ({ value, label }) => (
   <div className='flex flex-col items-center px-5 py-3 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-lg'>
     <span className='text-2xl md:text-3xl font-extrabold text-white tracking-tight'>{value}</span>
@@ -10,6 +11,25 @@ const StatPill = ({ value, label }) => (
 );
 
 const Login = () => {
+  const [userCount, setUserCount] = useState(0);
+  const [postCount, setPostCount] = useState(0);
+  const fetchData=async()=>{
+    try {
+      const {data}=await api.get('/api/first/getCount');
+    if(data.success){
+      setUserCount(data.userCount);
+      setPostCount(data.postsCount);
+    }
+    else{
+      toast.error(data.message);
+    }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+  useEffect(()=>{
+    fetchData();
+  },[]);
   return (
     <div className='relative min-h-screen flex flex-col md:flex-row overflow-hidden'>
       <img src={assets.bgImage1} alt="bgImage" className='absolute inset-0 -z-20 w-full h-full object-cover' />
@@ -29,8 +49,8 @@ const Login = () => {
 
         <div className='max-w-lg'>
           <div className='flex items-center gap-3 mb-6 max-md:mt-12'>
-            <StatPill value="128k+" label="Active users" />
-            <StatPill value="52k+"  label="Total posts" />
+            <StatPill value={userCount} label="Active users" />
+            <StatPill value={postCount}  label="Total posts" />
           </div>
 
           <h1 className='text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-4 drop-shadow-md'>

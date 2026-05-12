@@ -4,6 +4,9 @@ import moment from "moment";
 import { dummyUserData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useAuth } from "@clerk/react";
+import api from "../Api/axios";
+import toast from "react-hot-toast";
 
 const PostCard = ({ post }) => {
   const postWithHashtags = post.content.replace(
@@ -12,7 +15,31 @@ const PostCard = ({ post }) => {
   );
   const [likes, setLikes] = useState(post.likes_count);
   const currentUser = useSelector((state)=>state.user.value);
-  const handleLike = async () => {};
+  const {getToken}=useAuth();
+  const handleLike = async () => {
+    try {
+        const token=await getToken();
+        const {data}=await api.post(`/api/post/like`,{postId:post._id},{
+          headers:{Authorization:`Bearer ${token}`}
+        })
+        if(data.success){
+          toast.success(data.message);
+          setLikes(prev=>{
+            if(prev.includes(currentUser._id)){
+              return prev.filter(id=>id!=currentUser._id);
+            }
+            else{
+              return [...prev,currentUser._id];
+            }
+          })
+        }
+        else{
+          toast(data.message);
+        }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   const navigate= useNavigate();
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-5 space-y-4 w-screen sm:w-[calc(100vw-240px)] lg:max-w-2xl border border-gray-100 mb-4 mx-auto sm:mx-0">

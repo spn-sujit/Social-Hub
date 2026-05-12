@@ -9,6 +9,7 @@ import userRouter from './routes/userRoutes.js';
 import postRouter from './routes/postRouter.js';
 import storyRouter from './routes/storyRouter.js';
 import messageRouter from './routes/messageRoutes.js';
+import startPageRouter from './routes/startPageRouter.js';
 const app=express();
 await connectDB();
 app.use(express.json());
@@ -29,6 +30,8 @@ app.use('/api/post',postRouter);
 app.use('/api/story',storyRouter);
 
 app.use('/api/message',messageRouter);
+
+app.use('/api/first',startPageRouter);
 
 const PORT=process.env.PORT || 4000;
 

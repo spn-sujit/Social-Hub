@@ -3,21 +3,39 @@ import { dummyConnectionsData } from '../assets/assets';
 import { Search } from 'lucide-react';
 import UserCard from '../components/UserCard';
 import Loading from '../components/Loading';
-
+import api from '../Api/axios';
+import {useAuth} from '@clerk/react'
+import toast from 'react-hot-toast'
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from '../features/user/userSlice';
 const Discover = () => {
   const [input,setInput]=useState('');
-  const [users,setUsers]=useState(dummyConnectionsData);
+  const {getToken}=useAuth();
+  const [users,setUsers]=useState([]);
   const [loading,setLoading]=useState(false);
+  const dispatch=useDispatch();
   const handleSearch = async(e)=>{
     if(e.key==='Enter'){
-      setUsers([]);
-      setLoading(true);
-      setTimeout(()=>{
-        setUsers(dummyConnectionsData);
+       try {
+        const token=await getToken();
+        setUsers([]);
+        setLoading(true);
+        const {data}=await api.post('/api/user/discover',{input},{
+          headers:{Authorization:`Bearer ${token}`}
+        });
+        data.success ? setUsers(data.users) : toast.error(data.message);
         setLoading(false);
-      },1000)
+        setInput('');
+       } catch (error) {
+        toast.error(error.message);
+       }
+       setLoading(false);
     }
-  }
+  };
+  useEffect(()=>{
+     getToken().then((token)=>dispatch(fetchUser(token)));
+  },[]);
   return (
     <div className='min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-slate-50'>
        <div className='max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12'>
